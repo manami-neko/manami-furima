@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('mypages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->unique();
+            $table->string('image')->nullable();
             $table->string('postal_code', 255);
             $table->string('address', 255);
             $table->string('building', 255)->nullable();

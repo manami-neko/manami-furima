@@ -1,0 +1,42 @@
+.header {
+  background: #000;
+  width: 100%;
+
+}
+.header__inner {
+  padding: 22px 25px;
+  max-width: 1230px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+.header__logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+img {
+  width: 370px;
+}
+
+.header-nav__button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.header-nav__button:hover {
+  color: #a9a9a9;
+}
+
+.search-form .sell__button {
+  flex: 1;
+  margin-right: 20px;
+}
+
+
+

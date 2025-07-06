@@ -1,0 +1,25 @@
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: center;
+}
+
+.form__button-submit {
+    background: #FF5555;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+
+.register__button-submit {
+    text-decoration: none;
+    color: #0073CC;
+}
+
+.form {
+    text-align: center;
+}
+
+.login-form__heading {
+    text-align: center;
+}

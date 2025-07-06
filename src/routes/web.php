@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MypageController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [ItemController::class, 'index']);
+
+// Route::get('/register', [UserController::class, 'create']);
+Route::get('/items/{itemId}', [ItemController::class, 'show']);
+
+
+Route::middleware(['auth'])->group(
+    function () {
+        Route::get('/profile', [MypageController::class, 'createProfile']);
+        Route::post('/profile', [MypageController::class, 'storeProfile']);
+    }
+);
