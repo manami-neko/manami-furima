@@ -1,0 +1,29 @@
+.profile-image-wrapper {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.image-upload-button {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+}
+
+.image-upload-button:hover {
+    background-color: #e74c3c;
+    color: #fff;
+}

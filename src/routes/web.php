@@ -27,5 +27,8 @@ Route::middleware(['auth'])->group(
     function () {
         Route::get('/profile', [MypageController::class, 'createProfile']);
         Route::post('/profile', [MypageController::class, 'storeProfile']);
+        Route::get('/mypage', [MypageController::class, 'index']);
+        Route::get('/mypage/profile', [MypageController::class, 'editProfile']);
+        Route::post('/mypage/profile', [MypageController::class, 'updateProfile']);
     }
 );

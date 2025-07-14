@@ -64,7 +64,7 @@
         <div class="form__input--text">
             @foreach ($categories as $category)
             <label>
-                <input type="checkbox" name="category_ids[]" value="{{ $category->id }}">{{ $category->content }}
+                <input type="checkbox" name="category_ids[]" value="{{ $category->id }}" {{ $item->categories->contains($category->id) ? 'checked' : '' }}>{{ $category->content }}
             </label>
             @endforeach
         </div>

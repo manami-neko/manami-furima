@@ -13,7 +13,7 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <a href="/login" class="header__logo">
+            <a href="/" class="header__logo">
                 <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech">
             </a>
             <form class="form" action="/search" method="get">
@@ -21,9 +21,9 @@
                     <input type="text" name="keyword" placeholder="なにをお探しですか？">
                 </div>
             </form>
-            <form class="form" action="/logout" method="post">
+            <form class="form" action="{{ route('logout') }}" method="post">
                 @csrf
-                <button class="header-nav__button">ログアウト</button>
+                <button type="submit" class="header-nav__button">ログアウト</button>
             </form>
             <form class="form" action="/mypage" method="get">
                 <button class="header-nav__button">マイページ</button>
