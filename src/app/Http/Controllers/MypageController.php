@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mypage;
 use App\Models\Item;
+use App\Http\Requests\EditRequest;
 
 
 class MypageController extends Controller
@@ -15,14 +16,12 @@ class MypageController extends Controller
         $mypage = Mypage::where('user_id', $user->id)->first();
 
         if (!$mypage) {
-            // 初期値を設定
-            $mypage = [
-                'user_id',
-                'image' => 'Ellipse.1.png', // 例: デフォルト画像
-                'postal_code' => '',
-                'address' => '',
-                'building' => '',
-            ];
+            $mypage = new Mypage();
+            $mypage->user_id = $user->id;
+            $mypage->image = 'images/Ellipse 1.png';
+            $mypage->postal_code = '';
+            $mypage->address = '';
+            $mypage->building = '';
         }
 
         return view('users.login', compact('mypage'));
@@ -41,7 +40,13 @@ class MypageController extends Controller
         // dump($request->all());
         $data['user_id'] = auth()->id();
         // dump($data);
-        $data['image'] = $request->image->store('images', 'public');
+        // 画像がアップロードされている場合のみ保存
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->image->store('images', 'public');
+        } else {
+            // 画像がなければデフォルト画像を設定
+            $data['image'] = 'images/Ellipse 1.png';
+        }
         // dump($data);
         Mypage::create($data);
 
@@ -50,11 +55,15 @@ class MypageController extends Controller
 
     public function index()
     {
+        $user = auth()->user();
+        $mypage = Mypage::where('user_id', $user->id)->first();
+
         $items = Item::all();
-        return view('mypages.profile', compact('items'));
+
+        return view('mypages.profile', compact('items', 'mypage', 'user'));
     }
 
-    public function editProfile()
+    public function editProfile(Request $request)
     {
         $user = auth()->user();
         $mypage = Mypage::where('user_id', $user->id)->first();
@@ -71,9 +80,26 @@ class MypageController extends Controller
         return view('mypages.edit', compact('mypage', 'user'));
     }
 
-    public function updateProfile()
+    public function updateProfile(EditRequest $request)
     {
-        $items = Item::all();
-        return view('items.index', compact('items'));
+        $user = auth()->user();
+        $mypage = Mypage::where('user_id', $user->id)->first();
+
+        $mypage->postal_code = $request->input('postal_code');
+        $mypage->address = $request->input('address');
+        $mypage->building = $request->input('building');
+
+        $path = $request->image->store('images', 'public');
+        $mypage->image = $path;
+
+        $mypage->save();
+
+        return redirect('/mypage');
+    }
+
+    public function editAddress()
+    {
+
+        return view('mypages.address',);
     }
 }

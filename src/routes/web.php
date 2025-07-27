@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [ItemController::class, 'index']);
 
-// Route::get('/register', [UserController::class, 'create']);
 Route::get('/items/{itemId}', [ItemController::class, 'show']);
 
 
@@ -30,5 +29,10 @@ Route::middleware(['auth'])->group(
         Route::get('/mypage', [MypageController::class, 'index']);
         Route::get('/mypage/profile', [MypageController::class, 'editProfile']);
         Route::post('/mypage/profile', [MypageController::class, 'updateProfile']);
+        Route::get('/sell', [ItemController::class, 'createSell']);
+        Route::post('/sell', [ItemController::class, 'storeSell']);
+        Route::get('/purchase/{item_id}', [ItemController::class, 'createPurchase'])->name('purchase.create');
+        Route::post('/purchase/{item_id}', [ItemController::class, 'storePurchase'])->name('purchase.store');
+        Route::get('/purchase/address/{item_id}', [MypageController::class, 'editAddress']);
     }
 );

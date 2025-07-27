@@ -6,10 +6,8 @@
 
 @section('content')
 
-<div class="register-form__inner">
-    <!-- <form class="form" action="/edit" method="post" enctype="multipart/form-data">
-        @csrf -->
-    <div class="register-form__group">
+<div class="show-form__inner">
+    <div class="show-form__group">
         <div class="form__group-title">
             <span class="form__label--item">商品画像</span>
         </div>
@@ -18,14 +16,9 @@
                 <img src="{{  asset($item->image) }}">
             </div>
         </div>
-        <div class="form__error">
-            @error('image')
-            {{ $message }}
-            @enderror
-        </div>
     </div>
 </div>
-<div class="register-form__group">
+<div class="show-form__group">
     <div class="form__group-title">
         <span class="form__label--item">商品名</span>
     </div>
@@ -34,14 +27,34 @@
             <input type="text" name="name" value="{{ $item->name }}">
             </input>
         </div>
-        <div class="form__error">
-            @error('name')
-            {{ $message }}
-            @enderror
+    </div>
+</div>
+<div class="show-form__group">
+    <div class="form__group-title">
+        <span class="form__label--item">ブランド名</span>
+    </div>
+    <div class="form__group-content">
+        <div class="form__input--text">
+            <input type="text" name="brand" value="{{ $item->brand }}">
+            </input>
         </div>
     </div>
 </div>
-<div class="register-form__group">
+
+<div class="favorite-content">
+    <img src="{{  asset('storage/images/星アイコン8.png') }}" class="small-img">
+</div>
+
+
+<div class="comment-content">
+    <img src="{{  asset('storage/images/ふきだしのアイコン.png') }}" class="small-img">
+</div>
+
+
+<label class="purchase-button">
+    <a href="/purchase/{{ $item->id }}" class="sell">購入手続きへ</a>
+</label>
+<div class="show-form__group">
     <div class="form__group-title">
         <span class="form__label--item">値段</span>
     </div>
@@ -49,10 +62,15 @@
         <div class="form__input--text">
             <input type="number" name="price" value="{{ $item->price }}"></input>
         </div>
-        <div class="form__error">
-            @error('price')
-            {{ $message }}
-            @enderror
+    </div>
+</div>
+<div class="contact-form__group">
+    <div class="form__group-title">
+        <span class="form__label--item">商品説明</span>
+    </div>
+    <div class="form__group-content">
+        <div class="form__input--textarea">
+            <input type="text" name="detail" value="{{ $item->detail }}"> </input>
         </div>
     </div>
 </div>
@@ -68,33 +86,31 @@
             </label>
             @endforeach
         </div>
-        <div class="form__error">
-            @error('category_ids')
-            {{ $message }}
-            @enderror
-        </div>
     </div>
 </div>
-<div class="contact-form__group">
+<div class="show-form__group">
     <div class="form__group-title">
-        <span class="form__label--item">商品説明</span>
+        <span class="form__label--item">商品の状態</span>
     </div>
     <div class="form__group-content">
         <div class="form__input--textarea">
-            <input type="text" name="detail" value="{{ $item->detail }}"> </input>
-        </div>
-        <div class="form__error">
-            @error('detail')
-            {{ $message }}
-            @enderror
+            <input type="text" name="condition" value="{{ $item->condition->content }}"> </input>
         </div>
     </div>
 </div>
+<form action="/items/show" method="post">
+    @csrf
 
+    <div class="show-form__group">
+        <div class="form__group-title">
+            <span class="form__label--item">商品へのコメント</span>
+        </div>
+        <div class="form__group-content">
+            <div class="form__input--textarea">
+                <input type="text" name="comment">
+            </div>
+        </div>
+    </div>
 
 </form>
-
-</div>
-</div>
-
 @endsection

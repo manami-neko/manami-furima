@@ -23,7 +23,9 @@
             </form>
             <form class="form" action="{{ route('logout') }}" method="post">
                 @csrf
+                @if (Auth::check())
                 <button type="submit" class="header-nav__button">ログアウト</button>
+                @endif
             </form>
             <form class="form" action="/mypage" method="get">
                 <button class="header-nav__button">マイページ</button>

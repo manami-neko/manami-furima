@@ -11,6 +11,11 @@
     gap: 10px;
 }
 
+.form__mypage {
+        width: 250px;
+        margin: 25px;
+    }
+
 .item-content {
     width: 250px;
     margin: 25px;
@@ -33,4 +38,23 @@
     color: #FF0000;
     text-decoration: none;
     padding: 0 20px 0 40px;
+}
+
+.profile-button {
+    display: inline-block;
+        padding: 8px 20px;
+        color: #ff4b4b;
+        /* 文字色を赤に */
+        border: 2px solid #ff4b4b;
+        /* 赤い枠線 */
+        border-radius: 4px;
+        /* 角を丸く */
+        text-decoration: none;
+        /* 下線を消す */
+        
+}
+
+.profile-button:hover {
+    background-color: #e74c3c;
+    color: #fff;
 }

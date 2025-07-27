@@ -22,7 +22,7 @@ class SellRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'image' => 'required|image|mimes:png,jpeg',
         ];
     }
 }

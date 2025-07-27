@@ -22,7 +22,7 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'image' => 'image|mimes:png,jpeg',
         ];
     }
 }

@@ -14,7 +14,7 @@ class Item extends Model
         'image',
         'name',
         'brand',
-        'pride',
+        'price',
         'detail',
     ];
 

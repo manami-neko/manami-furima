@@ -6,7 +6,19 @@
 
 @section('content')
 
-<a href="/mypage/profile" class="edit">プロフィールを編集</a>
+<div class="form__mypage">
+
+    <div class="mypage-content">
+        <img src="{{  asset('storage/' . $mypage->image) }}" class="small-img">
+        </a>
+        <div>
+            {{ $user->name }}
+        </div>
+        <label class="profile-button">
+            <a href="/mypage/profile" class="edit">プロフィールを編集</a>
+        </label>
+    </div>
+</div>
 
 <div class="nav__inner">
     <a href="items/sell" class="sell">出品した商品</a>
