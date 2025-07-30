@@ -4,3 +4,17 @@
     object-fit: cover;
     display: block;
 }
+
+.show-form__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.form__group-content img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+}
+

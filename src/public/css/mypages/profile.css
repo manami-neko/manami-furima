@@ -22,6 +22,7 @@
 }
 
 .nav__inner {
+    display: flex;
     border-bottom: 2px solid #5F5F5F;
     padding-top: 47px;
     font-weight: 700;

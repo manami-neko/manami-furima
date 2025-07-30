@@ -27,4 +27,25 @@ class Item extends Model
     {
         return $this->belongsToMany(Category::class, 'category_item', 'item_id', 'category_id');
     }
+
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function isLikedBy($user)
+    {
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
+
+    public function likeCount()
+    {
+        return $this->likes()->count();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -34,5 +34,9 @@ Route::middleware(['auth'])->group(
         Route::get('/purchase/{item_id}', [ItemController::class, 'createPurchase'])->name('purchase.create');
         Route::post('/purchase/{item_id}', [ItemController::class, 'storePurchase'])->name('purchase.store');
         Route::get('/purchase/address/{item_id}', [MypageController::class, 'editAddress']);
+        Route::get('/mypage?tab=buy', [MypageController::class, ' index']);
+        Route::get('/mypage?tab=sell', [MypageController::class, 'index']);
+
+        Route::post('/items/{itemId}', [ItemController::class, 'toggle']);
     }
 );

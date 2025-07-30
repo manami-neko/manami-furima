@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Mypage;
+use App\Models\Like;
 
 class ItemController extends Controller
 {
@@ -18,10 +20,36 @@ class ItemController extends Controller
 
     public function show($itemId)
     {
-        $item = Item::with(['categories', 'condition'])->findOrFail($itemId);
+        $item = Item::with(['categories', 'condition', 'likes'])->findOrFail($itemId);
         $categories = Category::all();
-        $conditions = condition::all();
-        return view('items/show', compact('item', 'categories', 'conditions'));
+        $conditions = Condition::all();
+
+        $user = Auth::user();
+
+        $isLiked = auth()->check() && $item->likes->contains('user_id', auth()->id());
+
+        return view('items/show', compact('item', 'categories', 'conditions', 'isLiked'));
+    }
+
+    public function toggle($itemId)
+    {
+        $user = auth()->user();
+        $item = Item::findOrFail($itemId);
+
+        $like = Like::where('user_id', $user->id)
+            ->where('item_id', $item->id)
+            ->first();
+
+        if ($like) {
+            $like->delete(); // いいね解除
+        } else {
+            Like::create([
+                'user_id' => $user->id,
+                'item_id' => $item->id,
+            ]);
+        }
+
+        return back();
     }
 
     public function createSell()

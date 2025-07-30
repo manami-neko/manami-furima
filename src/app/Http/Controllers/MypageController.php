@@ -53,14 +53,26 @@ class MypageController extends Controller
         return redirect('/mypage');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
         $mypage = Mypage::where('user_id', $user->id)->first();
 
         $items = Item::all();
 
-        return view('mypages.profile', compact('items', 'mypage', 'user'));
+        // クエリパラメータの取得（例：buy or sell）
+        $tab = $request->query('tab');
+
+        // tab に応じたアイテム取得
+        if ($tab === 'sell') {
+            $items = $user->items ?? collect(); // 出品商品
+        } elseif ($tab === 'buy') {
+            $items = $user->purchases ?? collect(); // 購入商品
+        } else {
+            $items = Item::latest()->get(); // 全てのアイテム（新しい順）
+        }
+
+        return view('mypages.profile', compact('items', 'mypage', 'user', 'tab'));
     }
 
     public function editProfile(Request $request)
