@@ -30,7 +30,12 @@
 }
 
 .mylist__nav {
-    color: #FF0000;
+    color: #5F5F5F;
     text-decoration: none;
     padding: 0 20px 0 40px;
+}
+
+.nav.active,
+.mylist__nav.active {
+    color: #FF0000;
 }

@@ -56,12 +56,12 @@
 
         <!-- <div class="favorite-content">
             <img src="{{  asset('storage/images/星アイコン8.png') }}" class="small-img">
-        </div>
+        </div> -->
 
 
         <div class="comment-content">
             <img src="{{  asset('storage/images/ふきだしのアイコン.png') }}" class="small-img">
-        </div> -->
+        </div>
 
 
         <label class="purchase-button">

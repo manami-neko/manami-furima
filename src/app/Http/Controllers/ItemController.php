@@ -31,7 +31,7 @@ class ItemController extends Controller
         return view('items/show', compact('item', 'categories', 'conditions', 'isLiked'));
     }
 
-    public function toggle($itemId)
+    public function like($itemId)
     {
         $user = auth()->user();
         $item = Item::findOrFail($itemId);

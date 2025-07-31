@@ -36,17 +36,17 @@
 }
 
 .sell {
-    color: #FF0000;
+    color: #5F5F5F;
     text-decoration: none;
     padding: 0 20px 0 40px;
 }
 
-.profile-button {
+.profile-button a {
     display: inline-block;
         padding: 8px 20px;
-        color: #ff4b4b;
+        color: #FF5555;
         /* 文字色を赤に */
-        border: 2px solid #ff4b4b;
+        border: 2px solid #FF5555;
         /* 赤い枠線 */
         border-radius: 4px;
         /* 角を丸く */
@@ -55,7 +55,12 @@
         
 }
 
-.profile-button:hover {
-    background-color: #e74c3c;
+.profile-button:hover a {
+    background-color: #FF0000;
     color: #fff;
+}
+
+.sell.active,
+.buy.active {
+    color: #FF0000;
 }

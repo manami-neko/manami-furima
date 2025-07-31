@@ -7,9 +7,14 @@
 @section('content')
 
 <div class="nav__inner">
+    <a href="/?tab=recommend" class="nav {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}">おすすめ</a>
+    <a href="/?tab=mylist" class="mylist__nav {{ request('tab') === 'mylist' ? 'active' : '' }}">マイリスト</a>
+</div>
+
+<!-- <div class="nav__inner">
     <a href="/" class="nav">おすすめ</a>
     <a href="/" class="mylist__nav">マイリスト</a>
-</div>
+</div> -->
 
 <div class="form__item">
     @foreach($items as $item)

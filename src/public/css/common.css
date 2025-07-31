@@ -38,5 +38,17 @@ img {
   margin-right: 20px;
 }
 
+.login-nav__button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  padding-top: 5px;
+}
 
-
+.login-nav__button:hover {
+  color: #a9a9a9;
+}

@@ -42,8 +42,8 @@
 .image-upload-button {
     display: inline-block;
     padding: 5px 10px;
-    color: #e74c3c;
-    border: 1px solid #e74c3c;
+    color: #FF5555;
+    border: 1px solid #FF5555;
     border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
@@ -51,7 +51,7 @@
 }
 
 .image-upload-button:hover {
-    background-color: #e74c3c;
+    background-color: #FF5555;
     color: #fff;
 }
 
@@ -59,4 +59,11 @@
     height: 20px;
     color: #ff0000;
     text-align: center;
+}
+
+.form__button-submit {
+    background: #FF5555;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
 }

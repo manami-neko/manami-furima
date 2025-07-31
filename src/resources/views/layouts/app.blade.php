@@ -21,12 +21,16 @@
                     <input type="text" name="keyword" placeholder="なにをお探しですか？">
                 </div>
             </form>
+
+            @auth
             <form class="form" action="{{ route('logout') }}" method="post">
                 @csrf
-                @if (Auth::check())
                 <button type="submit" class="header-nav__button">ログアウト</button>
-                @endif
             </form>
+            @else
+            <a href="{{ route('login') }}" class="login-nav__button">ログイン</a>
+            </form>
+            @endauth
             <form class="form" action="/mypage" method="get">
                 <button class="header-nav__button">マイページ</button>
             </form>

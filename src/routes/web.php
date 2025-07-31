@@ -37,6 +37,6 @@ Route::middleware(['auth'])->group(
         Route::get('/mypage?tab=buy', [MypageController::class, ' index']);
         Route::get('/mypage?tab=sell', [MypageController::class, 'index']);
 
-        Route::post('/items/{itemId}', [ItemController::class, 'toggle']);
+        Route::post('/items/{itemId}', [ItemController::class, 'like']);
     }
 );
