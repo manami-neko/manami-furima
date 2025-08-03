@@ -28,8 +28,7 @@
         </div>
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="text" name="name" value="{{ $item->name }}">
-                </input>
+                <input type="text" name="name" value="{{ $item->name }}" readonly>
             </div>
         </div>
     </div>
@@ -39,7 +38,7 @@
         </div>
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="number" name="price" value="{{ $item->price }}"></input>
+                <input type="number" name="price" value="{{ $item->price }}" readonly>
             </div>
         </div>
     </div>
@@ -67,22 +66,21 @@
         </label>
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="text" name="postal_code" value="{{ $mypage->postal_code }}">
+                <input type="text" name="postal_code" value="{{ $mypage->postal_code }}" readonly>
             </div>
         </div>
 
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="text" name="address" value="{{ $mypage->address }}">
+                <input type="text" name="address" value="{{ $mypage->address }}" readonly>
             </div>
         </div>
 
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="text" name="building" value="{{ $mypage->building }}">
+                <input type="text" name="building" value="{{ $mypage->building }}" readonly>
             </div>
         </div>
-    </div>
-    <button type="submit">購入する</button>
+        <button type="submit">購入する</button>
 </form>
 @endsection

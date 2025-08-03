@@ -9,13 +9,49 @@ use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Mypage;
 use App\Models\Like;
+use App\Models\User;
 
 class ItemController extends Controller
 {
-    public function index()
+    // public function index(Request $request)
+    // {
+    //     $tab = $request->query('tab');
+
+    //     if ($tab === 'mylist') {
+    //         if (!Auth::check()) {
+    //             return redirect()->route('login'); // Fortifyのloginルート
+    //         }
+
+    //         // マイリスト用のデータ取得
+    //         $items = Auth::user()->likes()->with('item')->get()->pluck('item'); // 例
+    //     } else {
+    //         // おすすめ商品の取得
+    //         $items = Item::all();
+    //     }
+
+    //     return view('items.index', compact('items'));
+    // }
+
+    public function index(Request $request)
     {
-        $items = Item::all();
-        return view('items/index', compact('items'));
+        $tab = $request->query('tab');
+
+        if ($tab === 'mylist') {
+            if (!Auth::check()) {
+                return redirect()->route('login'); // Fortifyのloginルート
+            }
+
+            /** @var \App\Models\User|null $user */
+            $user = Auth::user();
+
+            // ログインしていれば「いいね」された商品一覧、未ログインなら空
+            $items = $user ? $user->likes()->with('item')->get()->pluck('item') : collect();
+        } else {
+            // おすすめ商品の取得
+            $items = Item::all();
+        }
+
+        return view('items.index', compact('items'));
     }
 
     public function show($itemId)

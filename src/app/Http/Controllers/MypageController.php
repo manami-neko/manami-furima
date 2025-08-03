@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Mypage;
 use App\Models\Item;
 use App\Http\Requests\EditRequest;
+use App\Http\Requests\AddressRequest;
 
 
 class MypageController extends Controller
@@ -109,9 +110,27 @@ class MypageController extends Controller
         return redirect('/mypage');
     }
 
-    public function editAddress()
+    public function editAddress(Request $request, $item_id)
     {
+        $item = Item::findOrFail($item_id);
+        $user = auth()->user();
+        $mypage = Mypage::where('user_id', $user->id)->first();
 
-        return view('mypages.address',);
+        return view('mypages.address', compact('item', 'mypage'));
+    }
+
+    public function updateAddress(Request $request, $item_id)
+    {
+        $user = auth()->user();
+        $mypage = Mypage::firstOrNew(['user_id' => $user->id]);
+
+        $mypage->postal_code = $request->input('postal_code');
+        $mypage->address = $request->input('address');
+        $mypage->building = $request->input('building');
+
+
+        $mypage->save();
+
+        return redirect()->route('purchase.create', ['item_id' => $item_id]);
     }
 }
