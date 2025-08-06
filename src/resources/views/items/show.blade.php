@@ -140,7 +140,12 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--textarea">
-                        <input type="text" name="comment">
+                        <input type="text" name="content">
+                    </div>
+                    <div class="form__error">
+                        @error('content')
+                        {{ $message }}
+                        @enderror
                     </div>
                     <div class="form__button">
                         <button class="form__button-submit" type="submit">コメントを送信する</button>

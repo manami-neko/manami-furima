@@ -10,6 +10,7 @@ use App\Models\Condition;
 use App\Models\Mypage;
 use App\Models\Like;
 use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
 
 class ItemController extends Controller
 {
@@ -89,25 +90,15 @@ class ItemController extends Controller
         return back();
     }
 
-    public function comment(Request $request, $itemId)
+    public function comment(CommentRequest $request, $itemId)
     {
         Comment::create([
             'user_id' => auth()->id(),
             'item_id' => $itemId,
-            'content' => $request->comment,
+            'content' => $request->content,
         ]);
 
         return back();
-    }
-
-    public function createSell()
-    {
-        return view('items/sell');
-    }
-
-    public function storeSell()
-    {
-        return view('items/sell');
     }
 
     public function createPurchase(Request $request, $item_id)
@@ -122,5 +113,15 @@ class ItemController extends Controller
     public function storePurchase()
     {
         return view('items/purchase');
+    }
+
+    public function createSell()
+    {
+        return view('items/sell');
+    }
+
+    public function storeSell()
+    {
+        return view('items/sell');
     }
 }

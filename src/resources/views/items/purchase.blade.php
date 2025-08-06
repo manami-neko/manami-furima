@@ -68,17 +68,32 @@
             <div class="form__input--text">
                 <input type="text" name="postal_code" value="{{  session('purchase_address.postal_code', $mypage->postal_code) }}" readonly>
             </div>
+            <div class="form__error">
+                @error('postal_code')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
 
         <div class="form__group-content">
             <div class="form__input--text">
                 <input type="text" name="address" value="{{ session('purchase_address.address', $mypage->address) }}" readonly>
             </div>
+            <div class="form__error">
+                @error('address')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
 
         <div class="form__group-content">
             <div class="form__input--text">
                 <input type="text" name="building" value="{{ session('purchase_address.building', $mypage->building) }}" readonly>
+            </div>
+            <div class="form__error">
+                @error('building')
+                {{ $message }}
+                @enderror
             </div>
         </div>
     </div>
