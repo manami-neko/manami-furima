@@ -9,7 +9,7 @@ use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Mypage;
 use App\Models\Like;
-use App\Models\User;
+use App\Models\Comment;
 
 class ItemController extends Controller
 {
@@ -56,15 +56,16 @@ class ItemController extends Controller
 
     public function show($itemId)
     {
-        $item = Item::with(['categories', 'condition', 'likes'])->findOrFail($itemId);
+        $item = Item::with(['categories', 'condition', 'likes', 'comments.user.mypage',])->findOrFail($itemId);
         $categories = Category::all();
         $conditions = Condition::all();
 
         $user = Auth::user();
+        $mypage = $user ? Mypage::where('user_id', $user->id)->first() : null;
 
         $isLiked = auth()->check() && $item->likes->contains('user_id', auth()->id());
 
-        return view('items/show', compact('item', 'categories', 'conditions', 'isLiked'));
+        return view('items/show', compact('item', 'categories', 'conditions', 'isLiked', 'mypage'));
     }
 
     public function like($itemId)
@@ -84,6 +85,17 @@ class ItemController extends Controller
                 'item_id' => $item->id,
             ]);
         }
+
+        return back();
+    }
+
+    public function comment(Request $request, $itemId)
+    {
+        Comment::create([
+            'user_id' => auth()->id(),
+            'item_id' => $itemId,
+            'content' => $request->comment,
+        ]);
 
         return back();
     }

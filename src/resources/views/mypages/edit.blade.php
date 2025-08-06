@@ -17,7 +17,6 @@
         <div class="form__mypage">
             <div class="mypage-content">
                 <img src="{{  asset('storage/' . $mypage->image) }}" class="small-img">
-                </a>
                 <label class="image-upload-button">
                     画像を選択する
                     <input type="file" name="image" accept="image/*" hidden>

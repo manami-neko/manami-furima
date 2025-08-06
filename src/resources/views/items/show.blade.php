@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/items/show.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common.css')}}" />
 @endsection
 
 @section('content')
@@ -17,7 +18,7 @@
     <div class="item-info">
         <div class="show-form__group">
             <div class="form__group-title">
-                <span class="form__label--item">商品名</span>
+                <!-- <span class="form__label--item">商品名</span> -->
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
@@ -28,7 +29,7 @@
         </div>
         <div class="show-form__group">
             <div class="form__group-title">
-                <span class="form__label--item">ブランド名</span>
+                <!-- <span class="form__label--item">ブランド名</span> -->
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
@@ -61,6 +62,9 @@
 
         <div class="comment-content">
             <img src="{{  asset('storage/images/ふきだしのアイコン.png') }}" class="small-img">
+        </div>
+        <div>
+            <span>{{ $item->comments->count() }}</span>
         </div>
 
 
@@ -111,9 +115,25 @@
                 </div>
             </div>
         </div>
-        <form action="/items/show" method="post">
-            @csrf
+        <div>
+            <h3>コメント({{ $item->comments->count() }})</h3>
 
+            @foreach ($item->comments as $comment)
+            <div>
+                <!-- @if ($comment->user && $comment->user->mypage && $comment->user->mypage->image) -->
+                <img src="{{ asset('storage/' . $comment->user->mypage->image) }}" class="comment-icon">
+                <!-- @else
+                <img src="{{ asset('storage/images/Ellipse 1.png') }}" class="small-icon">
+                @endif -->
+                <strong>{{ $comment->user->name }}</strong>
+                <p>{{ $comment->content }}</p>
+            </div>
+            @endforeach
+
+        </div>
+
+        <form action="/items/{{ $item->id }}" method="post">
+            @csrf
             <div class="show-form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">商品へのコメント</span>

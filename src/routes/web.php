@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(
         Route::get('/mypage?tab=buy', [MypageController::class, ' index']);
         Route::get('/mypage?tab=sell', [MypageController::class, 'index']);
         Route::post('/items/{itemId}', [ItemController::class, 'like']);
+        Route::post('/items/{itemId}', [ItemController::class, 'comment']);
 
         Route::get('/purchase/address/{itemId}', [MypageController::class, 'editAddress']);
         Route::post('/purchase/address/{itemId}', [MypageController::class, 'updateAddress']);

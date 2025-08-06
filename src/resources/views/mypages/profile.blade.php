@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/mypages/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common.css')}}" />
 @endsection
 
 @section('content')
@@ -9,8 +10,7 @@
 <div class="form__mypage">
 
     <div class="mypage-content">
-        <img src="{{  asset('storage/' . $mypage->image) }}" class="small-img">
-        </a>
+        <img src="{{  asset('storage/' . $mypage->image) }}" class="profile-icon">
         <div>
             {{ $user->name }}
         </div>

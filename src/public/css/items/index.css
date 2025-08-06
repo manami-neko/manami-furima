@@ -27,12 +27,16 @@
     color: #5F5F5F;
     text-decoration: none;
     padding: 0 20px 0 150px;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .mylist__nav {
     color: #5F5F5F;
     text-decoration: none;
     padding: 0 20px 0 40px;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .nav.active,

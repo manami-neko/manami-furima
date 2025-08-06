@@ -121,15 +121,15 @@ class MypageController extends Controller
 
     public function updateAddress(Request $request, $item_id)
     {
-        $user = auth()->user();
-        $mypage = Mypage::firstOrNew(['user_id' => $user->id]);
+        session([
+            'purchase_address' => [
+                'postal_code' => $request->input('postal_code'),
+                'address' => $request->input('address'),
+                'building' => $request->input('building'),
+            ]
+        ]);
 
-        $mypage->postal_code = $request->input('postal_code');
-        $mypage->address = $request->input('address');
-        $mypage->building = $request->input('building');
 
-
-        $mypage->save();
 
         return redirect()->route('purchase.create', ['item_id' => $item_id]);
     }

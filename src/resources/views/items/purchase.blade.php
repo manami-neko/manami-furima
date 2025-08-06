@@ -66,21 +66,22 @@
         </label>
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="text" name="postal_code" value="{{ $mypage->postal_code }}" readonly>
+                <input type="text" name="postal_code" value="{{  session('purchase_address.postal_code', $mypage->postal_code) }}" readonly>
             </div>
         </div>
 
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="text" name="address" value="{{ $mypage->address }}" readonly>
+                <input type="text" name="address" value="{{ session('purchase_address.address', $mypage->address) }}" readonly>
             </div>
         </div>
 
         <div class="form__group-content">
             <div class="form__input--text">
-                <input type="text" name="building" value="{{ $mypage->building }}" readonly>
+                <input type="text" name="building" value="{{ session('purchase_address.building', $mypage->building) }}" readonly>
             </div>
         </div>
-        <button type="submit">購入する</button>
+    </div>
+    <button type="submit">購入する</button>
 </form>
 @endsection

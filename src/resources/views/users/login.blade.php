@@ -19,7 +19,7 @@
 
                 <label class="image-upload-button">
                     画像を選択する
-                    <input type="file" name="image" accept="image/*" hidden>
+                    <input type="file" name="image" accept="image/*" hidden class="profile-icon">
                 </label>
 
             </div>
