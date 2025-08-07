@@ -40,7 +40,7 @@
         </div>
 
         <div class="favorite-content">
-            <form action="{{ url('/items/' . $item->id) }}" method="post" style="display: inline;">
+            <form action="{{ url('/items/' . $item->id . '/like') }}" method="post" style="display: inline;" novalidate>
                 @csrf
                 <button type="submit" style="background: none; border: none; font-size: 24px; cursor: pointer;">
                     @if ($isLiked)
@@ -52,12 +52,6 @@
                 <span>{{ $item->likes->count() }}</span>
             </form>
         </div>
-
-
-
-        <!-- <div class="favorite-content">
-            <img src="{{  asset('storage/images/星アイコン8.png') }}" class="small-img">
-        </div> -->
 
 
         <div class="comment-content">
@@ -132,7 +126,7 @@
 
         </div>
 
-        <form action="/items/{{ $item->id }}" method="post">
+        <form action="/items/{{ $item->id }}/comment" method="post" novalidate>
             @csrf
             <div class="show-form__group">
                 <div class="form__group-title">
