@@ -1,0 +1,10 @@
+.item-image {
+    width: 177.53px;
+    height: 177.53px;
+    margin: 100px 0 0 80px;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+}

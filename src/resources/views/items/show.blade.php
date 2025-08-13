@@ -2,7 +2,6 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/items/show.css') }}">
-<link rel="stylesheet" href="{{ asset('css/common.css')}}" />
 @endsection
 
 @section('content')
@@ -40,24 +39,20 @@
         </div>
 
         <div class="favorite-content">
-            <form action="{{ url('/items/' . $item->id . '/like') }}" method="post" style="display: inline;" novalidate>
+            <form action="{{ url('/items/' . $item->id . '/like') }}" method="post" novalidate>
                 @csrf
-                <button type="submit" style="background: none; border: none; font-size: 24px; cursor: pointer;">
+                <button type="submit" class="like-button">
                     @if ($isLiked)
-                    <span style="color: gold;">★</span> {{-- いいね済み：塗りつぶし --}}
+                    <span class="liked">★</span> {{-- いいね済み：塗りつぶし --}}
                     @else
-                    <span style="color: gray;">☆</span> {{-- 未いいね：空星 --}}
+                    <span class="not-liked">☆</span> {{-- 未いいね：空星 --}}
                     @endif
                 </button>
                 <span>{{ $item->likes->count() }}</span>
             </form>
         </div>
-
-
         <div class="comment-content">
             <img src="{{  asset('storage/images/ふきだしのアイコン.png') }}" class="small-img">
-        </div>
-        <div>
             <span>{{ $item->comments->count() }}</span>
         </div>
 

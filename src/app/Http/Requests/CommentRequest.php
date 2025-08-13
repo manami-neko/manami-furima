@@ -25,4 +25,12 @@ class CommentRequest extends FormRequest
             "content" => 'required|string|max:255',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'content.required' => 'コメントをを入力してください',
+            'content.max' => '225文字以内で入力してください',
+        ];
+    }
 }

@@ -18,3 +18,24 @@
     border-radius: 10px;
 }
 
+.comment-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+
+.like-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.liked {
+    color: gold;
+}
+
+.not-liked {
+    color: gray;
+}

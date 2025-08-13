@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mypage;
 use App\Models\Item;
-use App\Http\Requests\EditRequest;
+use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\AddressRequest;
 
 
@@ -59,16 +59,14 @@ class MypageController extends Controller
         $user = auth()->user();
         $mypage = Mypage::where('user_id', $user->id)->first();
 
-        $items = Item::all();
-
         // クエリパラメータの取得（例：buy or sell）
-        $tab = $request->query('tab');
+        $tab = $request->query('tab', 'sell');
 
         // tab に応じたアイテム取得
         if ($tab === 'sell') {
             $items = $user->items ?? collect(); // 出品商品
         } elseif ($tab === 'buy') {
-            $items = $user->purchases ?? collect(); // 購入商品
+            $items = $user->purchases()->with('item')->get()->pluck('item'); // 購入商品
         } else {
             $items = Item::latest()->get(); // 全てのアイテム（新しい順）
         }
@@ -93,7 +91,7 @@ class MypageController extends Controller
         return view('mypages.edit', compact('mypage', 'user'));
     }
 
-    public function updateProfile(EditRequest $request)
+    public function updateProfile(ProfileRequest $request)
     {
         $user = auth()->user();
         $mypage = Mypage::where('user_id', $user->id)->first();
@@ -128,8 +126,6 @@ class MypageController extends Controller
                 'building' => $request->input('building'),
             ]
         ]);
-
-
 
         return redirect()->route('purchase.create', ['item_id' => $item_id]);
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('brand', 255)->nullable();
             $table->integer('price');
             $table->text('detail', 255);
+            $table->string('status')->default('available');
             $table->timestamps();
         });
     }

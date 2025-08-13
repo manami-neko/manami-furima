@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
 Route::get('/items/{itemId}', [ItemController::class, 'show']);
 
@@ -42,8 +42,5 @@ Route::middleware(['auth'])->group(
 
         Route::get('/purchase/address/{itemId}', [MypageController::class, 'editAddress']);
         Route::post('/purchase/address/{itemId}', [MypageController::class, 'updateAddress']);
-
-        Route::get('/purchase/{itemId}', [ItemController::class, 'createSell']);
-        Route::post('/purchase/{itemId}', [ItemController::class, 'storeSell']);
     }
 );
