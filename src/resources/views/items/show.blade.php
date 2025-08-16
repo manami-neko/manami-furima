@@ -10,7 +10,7 @@
     <div class="show-form__group">
         <div class="form__group-content">
             <div class="form__item">
-                <img src="{{  asset($item->image) }}">
+                <img src="{{ asset('storage/' . $item->image) }}" class="small-img">
             </div>
         </div>
     </div>
@@ -109,18 +109,14 @@
 
             @foreach ($item->comments as $comment)
             <div>
-                <!-- @if ($comment->user && $comment->user->mypage && $comment->user->mypage->image) -->
+
                 <img src="{{ asset('storage/' . $comment->user->mypage->image) }}" class="comment-icon">
-                <!-- @else
-                <img src="{{ asset('storage/images/Ellipse 1.png') }}" class="small-icon">
-                @endif -->
+
                 <strong>{{ $comment->user->name }}</strong>
                 <p>{{ $comment->content }}</p>
             </div>
             @endforeach
-
         </div>
-
         <form action="/items/{{ $item->id }}/comment" method="post" novalidate>
             @csrf
             <div class="show-form__group">

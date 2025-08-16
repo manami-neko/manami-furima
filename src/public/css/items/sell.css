@@ -1,0 +1,57 @@
+.form__error {
+    height: 20px;
+    color: #ff0000;
+}
+
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.input-wrapper .prefix {
+    position: absolute;
+    left: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* 入力の邪魔にならないようにする */
+}
+
+.input-wrapper input {
+    padding-left: 20px;
+    /* prefixの分だけ左に余白を作る */
+}
+
+
+.checkbox input[type="checkbox"] {
+    position: absolute;
+    /* レイアウトから外す */
+    opacity: 0;
+}
+
+.checkbox label span {
+    display: inline-block;
+    padding: 1px 5px;
+    margin: 2px;
+    border: 2px solid #FF5555;
+    border-radius: 50px;
+    color: #FF5555;
+    transition: all 0.2s;
+}
+
+/* hover時 */
+.checkbox label span:hover {
+    background-color: #FF0000;
+    color: #fff;
+}
+
+
+
+/* チェックされた場合 */
+.checkbox input[type="checkbox"]:checked+span {
+    
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border-color: #FF5655;
+}
+

@@ -16,7 +16,8 @@
     @foreach($items as $item)
     <div class="item-content" style="position: relative;">
         <a href="{{ url('/items/' . $item->id) }}">
-            <img src="{{  asset($item->image) }}" class="small-img">
+
+            <img src="{{ asset('storage/' . $item->image) }}" class="small-img">
 
             @if($item->status === 'sold')
             <span class="sold-label">SOLD</span>

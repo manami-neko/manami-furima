@@ -13,6 +13,7 @@ use App\Models\Comment;
 use App\Models\Purchase;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\SellRequest;
 
 class ItemController extends Controller
 {
@@ -24,7 +25,6 @@ class ItemController extends Controller
             if (!Auth::check()) {
                 // ログインしていない場合、空のコレクションを渡す
                 $items = collect();
-                // return redirect()->route('login'); // Fortifyのloginルート
             }
 
             /** @var \App\Models\User|null $user */
@@ -123,23 +123,40 @@ class ItemController extends Controller
 
         return redirect()->route('items.index');
     }
-    // public function purchasedItems()
-    // {
-    //     $purchases = Purchase::with('item')
-    //         ->where('user_id', auth()->id())
-    //         ->get();
-
-    //     return view('mypage.purchased', compact('purchases'));
-    // }
-
 
     public function createSell()
     {
-        return view('items/sell');
+        $categories = Category::all();
+        $conditions = Condition::all();
+        $item = new Item(); // 空のモデルを渡す（フォームで old() と併用可）
+
+        $user = Auth::user();
+
+        return view('items/sell', compact('item', 'categories', 'conditions'));
     }
 
-    public function storeSell()
+    public function storeSell(SellRequest $request)
     {
-        return view('items/sell');
+        $item = new Item();
+
+        // 画像アップロード
+        $path = $request->file('image')->store('items', 'public');
+        $item->image = $path;
+
+        // フォームから送られてきた値をセット
+        $item->condition_id = $request->condition_id;
+        $item->name = $request->name;
+        $item->brand = $request->brand;
+        $item->detail = $request->detail;
+        $item->price = $request->price;
+        $item->status = 'available'; // 初期状態を available にするなど
+
+
+        $item->save();
+
+        // カテゴリー紐づけ（多対多）
+        $item->categories()->sync($request->category_ids);
+
+        return redirect()->route('items.index', $item)->with('status');
     }
 }

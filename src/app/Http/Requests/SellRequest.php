@@ -22,7 +22,29 @@ class SellRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|image|mimes:png,jpeg',
+            'image' => 'required|mimes:jpeg,png',
+            'name' => 'required|string|max:255',
+            'brand' => 'nullable|string|max:255',
+            'detail' => 'required|string|max:225',
+            'price' => 'required|integer|min:0',
+            'condition_id' => 'required',
+            'category_ids'  => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'image.required' => '商品画像は必須です',
+            'image' => 'jpegかpngで登録してください',
+            'name.required' => '商品名は必須です',
+            'detail.required' => '商品説明は必須です',
+            'detail.max' => '225文字以内で入力してください',
+            'price.required' => '値段は必須です。',
+            'price.integer' => '数字で入力してください',
+            'price.min' => '0円以上で入力してください',
+            'condition_id.required' => 'コンディションを選択してください',
+            'category_ids.required' => 'カテゴリーを1つ以上選択してください',
         ];
     }
 }

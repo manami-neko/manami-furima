@@ -117,7 +117,7 @@ class MypageController extends Controller
         return view('mypages.address', compact('item', 'mypage'));
     }
 
-    public function updateAddress(Request $request, $item_id)
+    public function updateAddress(AddressRequest $request, $item_id)
     {
         session([
             'purchase_address' => [
