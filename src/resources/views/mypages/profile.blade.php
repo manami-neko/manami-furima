@@ -31,7 +31,7 @@
     @foreach($items as $item)
     <div class="item-content">
         <a href="{{ url('/items/' . $item->id) }}">
-            <img src="{{  asset($item->image) }}" class="small-img">
+            <img src="{{ asset('storage/' . $item->image) }}" class="small-img">
         </a>
         <div>{{ $item->name }}
         </div>

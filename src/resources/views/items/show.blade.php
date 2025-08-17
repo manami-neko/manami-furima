@@ -17,7 +17,6 @@
     <div class="item-info">
         <div class="show-form__group">
             <div class="form__group-title">
-                <!-- <span class="form__label--item">商品名</span> -->
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
@@ -28,7 +27,6 @@
         </div>
         <div class="show-form__group">
             <div class="form__group-title">
-                <!-- <span class="form__label--item">ブランド名</span> -->
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">

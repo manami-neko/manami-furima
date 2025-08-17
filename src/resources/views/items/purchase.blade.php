@@ -15,7 +15,7 @@
             <div class="form__group-title">
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <img src="{{  asset($item->image) }}" class="item-image">
+                        <img src="{{ asset('storage/' . $item->image) }}" class="item-image">
 
 
                     </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <select class="payment" name="payment">
+                    <select class="payment" name="payment" id="paymentSelect">
                         <option value="">選択してください</option>
                         <option value="convenience_store">コンビニ支払い</option>
                         <option value="card">カード支払い</option>
@@ -101,23 +101,30 @@
             </div>
         </div>
     </div>
-    <div class="purchase-form__group">
-        <div class="form__group-title">
-            <span class="form__label--item">商品代金</span>
-        </div>
-        <div class="form__group-content">
-            <div class="form__input--text">
-                ￥<input type="number" name="price" value="{{ $item->price }}" readonly>
-            </div>
-        </div>
+    <div class="summary">
+        <p>商品代金 ￥{{ $item->price }}</p>
+        <p>支払方法: <span id="summary-payment">{{ old('payment') ? old('payment') : '未選択' }}</span></p>
     </div>
-    <div class="payment-form__group">
-        <div class="form__group-title">
-            <span class="form__label--item">支払方法</span>
-        </div>
-    </div>
-    <div class="purchase-section">
 
+    <script>
+        const paymentSelect = document.getElementById('paymentSelect');
+        const summaryPayment = document.getElementById('summary-payment');
+
+        // ページ読み込み時に既存の値を表示
+        if (paymentSelect.value) {
+            const text = paymentSelect.options[paymentSelect.selectedIndex].text;
+            summaryPayment.textContent = text;
+        }
+
+        // 選択変更時に反映
+        paymentSelect.addEventListener('change', function() {
+            const selectedText = paymentSelect.options[paymentSelect.selectedIndex].text;
+            summaryPayment.textContent = selectedText !== "選択してください" ? selectedText : "未選択";
+        });
+    </script>
+
+
+    <div class="purchase-section">
         @if($sold)
         <button class="purchase-button" disabled>購入不可</button>
         @else

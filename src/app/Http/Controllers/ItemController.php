@@ -33,8 +33,13 @@ class ItemController extends Controller
             // ログインしていれば「いいね」された商品一覧、未ログインなら空
             $items = $user ? $user->likes()->with('item')->get()->pluck('item') : collect();
         } else {
-            // おすすめ商品の取得
-            $items = Item::all();
+            // 自分の出品を除外して取得
+            $user = Auth::user();
+            if ($user) {
+                $items = Item::where('user_id', '<>', $user->id)->get();
+            } else {
+                $items = Item::all();
+            }
         }
 
         return view('items.index', compact('items'));
@@ -144,6 +149,7 @@ class ItemController extends Controller
         $item->image = $path;
 
         // フォームから送られてきた値をセット
+        $item->user_id = auth()->id();
         $item->condition_id = $request->condition_id;
         $item->name = $request->name;
         $item->brand = $request->brand;

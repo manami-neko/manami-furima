@@ -60,4 +60,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Purchase::class);
     }
+
+    // User.php
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }
