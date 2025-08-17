@@ -21,28 +21,40 @@ class ItemController extends Controller
     {
         $tab = $request->query('tab');
 
+        $keyword = $request->query('keyword'); // 検索ワード取得
+
+        /** @var \App\Models\User|null $user */
+        $user = Auth::user();
+
         if ($tab === 'mylist') {
             if (!Auth::check()) {
                 // ログインしていない場合、空のコレクションを渡す
                 $items = collect();
-            }
-
-            /** @var \App\Models\User|null $user */
-            $user = Auth::user();
-
-            // ログインしていれば「いいね」された商品一覧、未ログインなら空
-            $items = $user ? $user->likes()->with('item')->get()->pluck('item') : collect();
-        } else {
-            // 自分の出品を除外して取得
-            $user = Auth::user();
-            if ($user) {
-                $items = Item::where('user_id', '<>', $user->id)->get();
             } else {
-                $items = Item::all();
+                // いいねした商品をクエリで取得
+                $items = $user->likes()->with('item')->get()->map(fn($like) => $like->item)->filter();
+
+                // コレクションで検索ワードフィルター
+                if ($keyword) {
+                    $items = $items->filter(fn($item) => str_contains($item->name, $keyword));
+                }
             }
+        } else {
+            // マイリスト以外（全商品から自分の出品を除外）
+            $query = Item::query();
+            if ($user) {
+                $query->where('user_id', '<>', $user->id);
+            }
+
+            // 検索ワードがあれば部分一致
+            if ($keyword) {
+                $query->where('name', 'like', "%{$keyword}%");
+            }
+
+            $items = $query->get();
         }
 
-        return view('items.index', compact('items'));
+        return view('items.index', compact('items', 'tab', 'keyword'));
     }
 
     public function show($itemId)

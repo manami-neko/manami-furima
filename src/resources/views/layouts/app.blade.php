@@ -16,9 +16,12 @@
             <a href="/" class="header__logo">
                 <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech">
             </a>
-            <form class="form" action="/search" method="get">
+            <form class="form" action="/" method="get">
                 <div class="search-form">
-                    <input type="text" name="keyword" placeholder="なにをお探しですか？">
+                    <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
+                    @if(request('tab') === 'mylist')
+                    <input type="hidden" name="tab" value="mylist">
+                    @endif
                 </div>
             </form>
 
