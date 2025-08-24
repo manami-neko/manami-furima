@@ -1,4 +1,4 @@
-.form__error {
+/* .form__error {
     height: 20px;
     color: #ff0000;
     text-align: center;
@@ -9,6 +9,7 @@
     color: #FFFFFF;
     border: none;
     cursor: pointer;
+    width: 680px;
 }
 
 .register__button-submit {
@@ -22,4 +23,158 @@
 
 .login-form__heading {
     text-align: center;
+}
+
+span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: bold;
+} */
+
+
+
+
+
+/* ログインフォーム全体を中央に配置 */
+.login-form__content {
+    background: #fff;
+    /* 白背景 */
+    width: 680px;
+    height: 656px;
+    margin: auto;
+    /* 上下中央寄せ */
+    padding: 40px;
+    border-radius: 8px;
+     box-sizing: border-box; /* padding込みで680×656になる */
+    
+}
+
+/* 見出し */
+.login-form__heading h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* 入力フィールド */
+.form__group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form__label--item {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+.form__input--text input {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 26px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* エラーメッセージ */
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ログインボタン */
+.form__button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form__button-submit {
+    background: #FF5555;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.form__button-submit:hover {
+    background: #ff3333;
+}
+
+/* 会員登録リンク */
+.register__link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register__button-submit {
+    text-decoration: none;
+    color: #0073CC;
+    font-size: 14px;
+    font-size: 20px;
+}
+
+.register__button-submit:hover {
+    text-decoration: underline;
+}
+
+/* ===================================== */
+/* PC向け (1400px - 1540px) */
+/* ===================================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .login-form__content {
+        max-width: 700px;
+        padding: 40px;
+    }
+
+    .login-form__heading h2 {
+        font-size: 32px;
+    }
+
+    .form__input--text input {
+        font-size: 18px;
+        padding: 14px;
+    }
+
+    .form__button-submit {
+        font-size: 18px;
+        padding: 16px;
+    }
+}
+
+/* ===================================== */
+/* タブレット向け (768px - 850px) */
+/* ===================================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .login-form__content {
+        width: 90%;
+        /* 横幅をデバイスに合わせて広げる */
+        padding: 30px 20px;
+    }
+
+    .login-form__heading h2 {
+        font-size: 24px;
+    }
+
+    .form__input--text input {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .form__button-submit {
+        font-size: 16px;
+        padding: 14px;
+    }
 }

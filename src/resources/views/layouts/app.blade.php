@@ -16,6 +16,7 @@
             <a href="/" class="header__logo">
                 <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech">
             </a>
+
             <form class="form" action="/" method="get">
                 <div class="search-form">
                     <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
@@ -25,21 +26,23 @@
                 </div>
             </form>
 
-            @auth
-            <form class="form" action="{{ route('logout') }}" method="post">
-                @csrf
-                <button type="submit" class="header-nav__button">ログアウト</button>
-            </form>
-            @else
-            <a href="{{ route('login') }}" class="login-nav__button">ログイン</a>
-            </form>
-            @endauth
-            <form class="form" action="/mypage" method="get">
-                <button class="header-nav__button">マイページ</button>
-            </form>
-            <form class="form" action="/sell" method="get">
-                <button class="sell__button">出品</button>
-            </form>
+            <div class="header__nav">
+                @auth
+                <form class="form" action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="header-nav__button">ログアウト</button>
+                </form>
+                @else
+                <a href="{{ route('login') }}" class="login-nav__button">ログイン</a>
+                </form>
+                @endauth
+                <form class="form" action="/mypage" method="get">
+                    <button class="header-nav__button">マイページ</button>
+                </form>
+                <form class="form" action="/sell" method="get">
+                    <button class="sell__button">出品</button>
+                </form>
+            </div>
         </div>
     </header>
 

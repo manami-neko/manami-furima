@@ -19,7 +19,7 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $tab = $request->query('tab');
+        $tab = $request->query('tab', 'recommend');
 
         $keyword = $request->query('keyword'); // 検索ワード取得
 

@@ -7,15 +7,10 @@
 @section('content')
 
 <div class="nav__inner">
-    <a href="/?tab=recommend" class="nav {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}">おすすめ</a>
-    <a href="/?tab=mylist" class="mylist__nav {{ request('tab') === 'mylist' ? 'active' : '' }}">マイリスト</a>
-</div>
-
-<!-- <div class="nav__inner">
     <a href="{{ route('items.index', ['tab' => 'recommend', 'keyword' => request('keyword')]) }}"
         class="nav {{ $tab === 'recommend' ? 'active' : '' }}">おすすめ</a>
     <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}"
-        class="mylist__nav {{ $tab === 'mylist' ? 'active' : '' }}">マイリスト</a> -->
+        class="mylist__nav {{ $tab === 'mylist' ? 'active' : '' }}">マイリスト</a>
 </div>
 
 <div class="form__item">
