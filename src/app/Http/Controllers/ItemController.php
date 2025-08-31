@@ -175,6 +175,6 @@ class ItemController extends Controller
         // カテゴリー紐づけ（多対多）
         $item->categories()->sync($request->category_ids);
 
-        return redirect()->route('items.index', $item)->with('status');
+        return redirect('mypage')->with('status');
     }
 }

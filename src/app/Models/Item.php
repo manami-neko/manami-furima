@@ -10,13 +10,21 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'condition_id',
         'image',
         'name',
         'brand',
         'price',
         'detail',
+        'status',
     ];
+
+    // status を常に先頭大文字で取得するアクセサ
+    public function getStatusAttribute($value)
+    {
+        return ucfirst($value);
+    }
 
     public function condition()
     {

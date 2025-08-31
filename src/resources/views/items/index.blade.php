@@ -20,8 +20,8 @@
 
             <img src="{{ asset('storage/' . $item->image) }}" class="small-img">
 
-            @if($item->status === 'sold')
-            <span class="sold-label">SOLD</span>
+            @if($item->status === 'Sold')
+            <span class="sold-label">Sold</span>
             @endif
 
         </a>
