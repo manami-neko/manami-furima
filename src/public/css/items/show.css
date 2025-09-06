@@ -4,8 +4,8 @@
 }
 
 .small-img {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     display: block;
 }
@@ -13,14 +13,35 @@
 .show-form__inner {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 50px;
 }
 
 .form__group-content img {
-    width: 250px;
+    width: 600px;
     height: auto;
-    border-radius: 10px;
+    object-fit: cover;
+    margin: 50px;
+}
+
+.form__group-content {
+    align-content: center;
+}
+
+.form__input--text {
+    margin-left: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+label {
+    font-size: 20px;
+    color: #000000;
+    background: #D9D9D9;
+    border-radius: 15px;
+    padding: 0px 15px 0px 15px;
+    margin-right: 20px;
 }
 
 .comment-content {
@@ -33,9 +54,18 @@
 .like-button {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 42px;
     cursor: pointer;
 }
+
+.icon-content {
+    display: flex;
+    align-items: center;
+    /* 縦位置を揃える */
+    gap: 20px;
+    /* アイコン同士の間隔 */
+}
+
 
 .liked {
     color: gold;
@@ -43,4 +73,158 @@
 
 .not-liked {
     color: gray;
+}
+
+.form__label {
+    font-size: 36px;
+}
+
+/* 商品情報（右カラム） */
+.item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 50px;
+}
+
+/* 商品名 */
+.item-info input[name="name"] {
+    font-size: 45px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+}
+
+/* ブランド */
+.item-info input[name="brand"] {
+    font-size: 20px;
+    color: #000000;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* 値段 */
+.item-info [name="price"] {
+    font-size: 45px;
+    color: #000000;
+    border: none;
+    outline: none;
+    background: none;
+    width: auto;
+}
+
+.price-box {
+    display: flex;
+    align-items: baseline;
+    /* 文字のベースラインを揃える */
+    gap: 6px;
+}
+
+.currency {
+    font-size: 30px;
+    align-content: center;
+}
+
+.tax {
+    font-size: 30px;
+    align-content: center;
+}
+
+/* 商品説明 */
+.item-info input[name="detail"] {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 20px;
+    line-height: 1.6;
+    width: 100%;
+    color: #000000;
+}
+
+.item-info input[name="condition"] {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 20px;
+    line-height: 1.6;
+    width: 100%;
+    color: #000000;
+}
+
+/* 購入ボタン */
+.purchase-button .sell {
+    display: inline-block;
+    background: #FF5555;
+    color: #FFFFFF;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+}
+
+.purchase-button .sell:hover {
+    opacity: 0.9;
+}
+
+/* 商品情報欄 */
+.show-form__group {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.form__label--item {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* コメント一覧 */
+.comment-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+h3 {
+    font-size: 36px;
+}
+
+.form__label--comment {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.form__label {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.comment-name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.form__button-submit {
+    background: #FF5555;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 25px;
+    width: 100%;
+}
+
+.form__button-submit:hover {
+    opacity: 0.9;
 }

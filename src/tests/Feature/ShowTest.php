@@ -80,7 +80,7 @@ class ShowTest extends TestCase
         // 必要な情報が表示されているか確認
         $response->assertSee($item->name)
             ->assertSee($item->brand)
-            ->assertSee((string)$item->price)
+            ->assertSee(number_format($item->price))
             ->assertSee($item->detail)
             ->assertSee($condition->content)
             ->assertSee($category->content)

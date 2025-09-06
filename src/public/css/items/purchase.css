@@ -1,10 +1,114 @@
-.item-image {
-    width: 177.53px;
-    height: 177.53px;
-    margin: 100px 0 0 80px;
+/* ===== レイアウト全体を2カラムに ===== */
+.purchase-form__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 40px auto;
+    gap: 40px;
 }
 
+/* ===== 左カラム（商品・支払い・配送先入力） ===== */
+.purchase-form__left {
+    flex: 2;
+}
+
+.purchase-form__group,
+.payment-form__group {
+    margin-bottom: 25px;
+}
+
+.form__group-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form__input--text input {
+    width: 100%;
+    max-width: 350px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form__input--text select {
+    width: 100%;
+    max-width: 350px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 商品画像 */
+.item-image {
+    width: 177px;
+    height: 177px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+/* ===== 右カラム（サマリー） ===== */
+.summary {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 14px;
+    background-color: #fff;
+    height: fit-content;
+}
+
+.summary p {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ===== 購入ボタン ===== */
+.purchase-section {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.purchase-button {
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.purchase-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* ===== 配送先リンク ===== */
+.address-button {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.address-button .address {
+    color: #0073CC;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.address-button .address:hover {
+    text-decoration: underline;
+}
+
+/* ===== エラーメッセージ ===== */
 .form__error {
     height: 20px;
+    font-size: 12px;
     color: #ff0000;
+    margin-top: 5px;
 }

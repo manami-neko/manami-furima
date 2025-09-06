@@ -6,8 +6,8 @@
 
 @section('content')
 
-<div class="login-form__content">
-    <div class="login-form__heading">
+<div class="address-form__content">
+    <div class="address-form__heading">
         <h2>住所の変更</h2>
     </div>
 

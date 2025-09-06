@@ -32,7 +32,11 @@
 }
 
 .header__logo img {
-  width: 370px;
+  max-width: 370px;
+    /* PCでは370pxまで */
+    width: 100%;
+    /* 親要素に合わせて縮小可能に */
+    height: auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -41,23 +45,12 @@
   }
 }
 
-/* .search-form {
-  width: 500px;
-  font-size: 24px;
-  color: #000000;
-  padding: auto;
-  background-color: #FFFFFF;
-  border-radius: 4px;
-} */
-
-/* ============================= */
 /* 検索フォーム */
-/* ============================= */
 .search-form {
   flex: 1;
   /* 横幅いっぱいに広がる */
+  min-width: 0;
   max-width: 500px;
-  margin: 0 20px;
 }
 
 .search-form input[type="text"] {
@@ -95,12 +88,6 @@
 .header-nav__button:hover,
 .login-nav__button:hover {
   color: #a9a9a9;
-}
-
-
-.search-form {
-  flex: 1;
-  margin-right: 20px;
 }
 
 .profile-icon {

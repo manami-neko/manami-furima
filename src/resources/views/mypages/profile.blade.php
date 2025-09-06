@@ -7,17 +7,14 @@
 
 @section('content')
 
-<div class="form__mypage">
-
-    <div class="mypage-content">
-        <img src="{{  asset('storage/' . $mypage->image) }}" class="profile-icon">
-        <div>
-            {{ $user->name }}
-        </div>
-        <label class="profile-button">
-            <a href="/mypage/profile" class="edit">プロフィールを編集</a>
-        </label>
+<div class="mypage-content">
+    <img src="{{  asset('storage/' . $mypage->image) }}" class="profile-icon">
+    <div class="user-name">
+        {{ $user->name }}
     </div>
+    <label class="profile-button">
+        <a href="/mypage/profile" class="edit">プロフィールを編集</a>
+    </label>
 </div>
 
 <div class="nav__inner">
@@ -33,7 +30,8 @@
         <a href="{{ url('/items/' . $item->id) }}">
             <img src="{{ asset('storage/' . $item->image) }}" class="small-img">
         </a>
-        <div>{{ $item->name }}
+        <div class="item-name">
+            {{ $item->name }}
         </div>
     </div>
     @endforeach

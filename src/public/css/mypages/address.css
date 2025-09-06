@@ -1,4 +1,75 @@
+/* ログインフォーム全体を中央に配置 */
+.address-form__content {
+    background: #fff;
+    /* 白背景 */
+    width: 680px;
+    height: 656px;
+    margin: auto;
+    /* 上下中央寄せ */
+    padding: 40px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    /* padding込みで680×656になる */
+
+}
+
+/* 見出し */
+.address-form__heading h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* 入力フィールド */
+.form__group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form__label--item {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.form__input--text input {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 26px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* エラーメッセージ */
 .form__error {
     height: 20px;
     color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ログインボタン */
+.form__button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form__button-submit {
+    background: #FF5555;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 8px;
+    font-size: 26px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    margin-top: 50px;
+}
+
+.form__button-submit:hover {
+    background: #ff3333;
 }

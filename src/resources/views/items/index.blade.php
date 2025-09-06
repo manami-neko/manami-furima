@@ -25,7 +25,8 @@
             @endif
 
         </a>
-        <div>{{ $item->name }}
+        <div class="item-name">
+            {{ $item->name }}
         </div>
     </div>
     @endforeach

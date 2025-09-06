@@ -17,6 +17,7 @@
                 <img src="{{ asset('storage/images/logo.svg') }}" alt="coachtech">
             </a>
 
+            @unless(request()->routeIs('login', 'register'))
             <form class="form" action="/" method="get">
                 <div class="search-form">
                     <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
@@ -34,7 +35,6 @@
                 </form>
                 @else
                 <a href="{{ route('login') }}" class="login-nav__button">ログイン</a>
-                </form>
                 @endauth
                 <form class="form" action="/mypage" method="get">
                     <button class="header-nav__button">マイページ</button>
@@ -43,6 +43,7 @@
                     <button class="sell__button">出品</button>
                 </form>
             </div>
+            @endunless
         </div>
     </header>
 
