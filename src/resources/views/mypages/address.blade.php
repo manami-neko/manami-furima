@@ -14,8 +14,6 @@
     <form class="form" action="/purchase/address/{{ $item->id }}" method="post" enctype="multipart/form-data" novalidate>
         @csrf
 
-        <!-- <input type="hidden" name="name" value="{{ $mypage->name }}"> -->
-
         <div class="form__group">
             <div class="form__group-title">
                 <div class="form__group">

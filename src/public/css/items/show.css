@@ -50,7 +50,6 @@ label {
     gap: 20px;
 }
 
-
 .like-button {
     background: none;
     border: none;
@@ -65,7 +64,6 @@ label {
     gap: 20px;
     /* アイコン同士の間隔 */
 }
-
 
 .liked {
     color: gold;

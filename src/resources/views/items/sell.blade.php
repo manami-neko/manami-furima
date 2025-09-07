@@ -7,6 +7,9 @@
 @section('content')
 
 <div class="sell-form__inner">
+    <div class=sell-form__heading">
+        <h2>商品の出品</h2>
+    </div>
 
     <form class="form" action="/sell" method="post" enctype="multipart/form-data">
         @csrf
@@ -49,7 +52,7 @@
             <div class="form__group-title">
                 <span class="form__label--item">商品の状態</span>
             </div>
-            <div class="form__group-content">
+            <div class="group-content">
                 <select name="condition_id">
                     <option value="" disabled {{ old('condition_id') ? '' : 'selected' }}>選択してください</option>
                     @foreach ($conditions as $condition)
@@ -70,7 +73,7 @@
             <div class="form__group-title">
                 <span class="form__label--item">商品名</span>
             </div>
-            <div class="form__group-content">
+            <div class="group-content">
                 <div class="form__input--text">
                     <input type="text" name="name" value="{{ old('name') }}">
                     </input>
@@ -86,7 +89,7 @@
             <div class="form__group-title">
                 <span class="form__label--item">ブランド名</span>
             </div>
-            <div class="form__group-content">
+            <div class="group-content">
                 <div class="form__input--text">
                     <input type="text" name="brand" value="{{ old('brand') }}">
                 </div>
@@ -101,7 +104,7 @@
             <div class="form__group-title">
                 <span class="form__label--item">商品の説明</span>
             </div>
-            <div class="form__group-content">
+            <div class="group-content">
                 <div class="form__input--textarea">
                     <input type="text" name="detail" value="{{ old('detail') }}"> </input>
                 </div>
@@ -117,7 +120,7 @@
             <div class="form__group-title">
                 <span class="form__label--item">販売価格</span>
             </div>
-            <div class="form__group-content">
+            <div class="group-content">
                 <div class="form__input--text">
                     <div class="input-wrapper">
                         <span class="prefix">¥</span>

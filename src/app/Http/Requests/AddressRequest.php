@@ -32,7 +32,7 @@ class AddressRequest extends FormRequest
     {
         return [
             'postal_code.required' => '郵便番号を入力してください',
-            'postal_code.regex' => '郵便番号はハイフンありの8文字で入力してください。',
+            'postal_code.regex' => '郵便番号はハイフンありの8文字で入力してください',
             'address.required' => '住所を入力してください',
             'address.max' => '225文字以内で入力してください',
             'building.max' => '225文字以内で入力してください',

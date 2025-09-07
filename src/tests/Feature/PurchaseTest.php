@@ -3,10 +3,10 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Item;
+use App\Models\Mypage;
 use App\Models\Purchase;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
@@ -30,6 +30,17 @@ class PurchaseTest extends TestCase
 
         $this->user = User::first();
         $this->item = Item::first();
+
+        // テスト用に必ず Mypage を作る
+        if (!Mypage::where('user_id', $this->user->id)->exists()) {
+            Mypage::create([
+                'user_id' => $this->user->id,
+                'image' => 'images/default.png',
+                'postal_code' => '000-0000',
+                'address' => '東京都',
+                'building' => 'テストビル',
+            ]);
+        }
     }
 
     /**
@@ -71,6 +82,9 @@ class PurchaseTest extends TestCase
                 'building' => 'テストビル',
             ]);
 
+        // Blade に渡す items を最新の DB 状態で再取得
+        $this->item->refresh();
+
         $response = $this->get('/');
         $response->assertSee('Sold'); // Blade 側に sold が表示されているか
     }
@@ -79,17 +93,31 @@ class PurchaseTest extends TestCase
     {
         // 先に購入状態にする
         $this->actingAs($this->user)
-            ->post("/items/{$this->item->id}", [
+            ->post("/purchase/{$this->item->id}", [
                 'payment' => 'credit_card',
                 'postal_code' => '123-4567',
                 'address' => '東京都渋谷区1-1-1',
                 'building' => 'テストビル',
             ]);
 
-        // マイページ購入一覧にアクセス
+        // ログインして購入タブにアクセス
         $response = $this->actingAs($this->user)
-            ->get('/');
-        $response->assertSee($this->item->name);
-        // Bladeで商品名が表示されるか
+            ->get('/mypage?tab=buy');
+
+        $response->assertStatus(200);
+
+        // シーダーで作った購入商品を取得
+        $purchasedItems = $this->user->purchases()->with('item')->get()->map(fn($p) => $p->item);
+
+        foreach ($purchasedItems as $item) {
+            $response->assertSee($item->name);
+            $response->assertSee($item->image);
+        }
+
+        // ユーザーが購入していない商品は表示されない
+        $nonPurchasedItems = Item::whereNotIn('id', $purchasedItems->pluck('id'))->get();
+        foreach ($nonPurchasedItems as $item) {
+            $response->assertDontSee($item->name);
+        }
     }
 }

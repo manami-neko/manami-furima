@@ -24,8 +24,6 @@
     text-align: center;
 }
 
-
-
 .login-form__content {
     background: #fff;
     /* 白背景 */
@@ -37,7 +35,6 @@
     border-radius: 8px;
     box-sizing: border-box;
     /* padding込みで680×656になる */
-
 }
 
 /* 見出し */

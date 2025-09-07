@@ -9,7 +9,6 @@
 <form action="{{ route('purchase.store', ['item_id' => $item->id]) }}" method="post">
     @csrf
 
-
     <div class="purchase-form__inner">
         <div class="purchase-form__left">
             <div class="purchase-form__group">

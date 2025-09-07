@@ -38,17 +38,16 @@ class MypageController extends Controller
                 'building',
             ]
         );
-        // dump($request->all());
+
         $data['user_id'] = auth()->id();
-        // dump($data);
-        // 画像がアップロードされている場合のみ保存
+
         if ($request->hasFile('image')) {
             $data['image'] = $request->image->store('images', 'public');
         } else {
             // 画像がなければデフォルト画像を設定
             $data['image'] = 'images/Ellipse 1.png';
         }
-        // dump($data);
+
         Mypage::create($data);
 
         return redirect('/mypage');
@@ -59,14 +58,13 @@ class MypageController extends Controller
         $user = auth()->user();
         $mypage = Mypage::where('user_id', $user->id)->first();
 
-        // クエリパラメータの取得（例：buy or sell）
         $tab = $request->query('tab', 'sell');
 
         // tab に応じたアイテム取得
         if ($tab === 'sell') {
             $items = $user->items ?? collect(); // 出品商品
         } elseif ($tab === 'buy') {
-            $items = $user->purchases()->with('item')->get()->pluck('item'); // 購入商品
+            $items = $user->purchases()->with('item')->get()->map(fn($purchase) => $purchase->item); // 購入商品
         } else {
             $items = Item::latest()->get(); // 全てのアイテム（新しい順）
         }
@@ -100,8 +98,13 @@ class MypageController extends Controller
         $mypage->address = $request->input('address');
         $mypage->building = $request->input('building');
 
-        $path = $request->image->store('images', 'public');
-        $mypage->image = $path;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $mypage->image = $path;
+        } elseif (!$mypage->image) {
+            // まだ画像が設定されていない場合にデフォルトを入れる
+            $mypage->image = 'images/Ellipse 1.png';
+        }
 
         $mypage->save();
 

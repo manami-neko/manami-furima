@@ -120,10 +120,6 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($item_id);
 
-        // if ($item->status === 'sold') {
-        //     return back()->withErrors(['item' => 'この商品はすでに売り切れです']);
-        // }
-
         // 購入情報の保存
         Purchase::create([
             'user_id' => auth()->id(),
@@ -135,7 +131,7 @@ class ItemController extends Controller
         ]);
 
         // 商品ステータスを確実に更新
-        $item->status = 'sold';
+        $item->status = 'Sold';
         $item->save();
 
         return redirect()->route('items.index');

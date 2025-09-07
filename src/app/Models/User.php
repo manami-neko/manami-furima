@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Like;
 use App\Models\Purchase;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,7 +60,6 @@ class User extends Authenticatable
         return $this->hasMany(Purchase::class);
     }
 
-    // User.php
     public function items()
     {
         return $this->hasMany(Item::class);
